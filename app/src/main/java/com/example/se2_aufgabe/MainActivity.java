@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.ServerSocket;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private Button number;
     private TextView server;
-    private EditText result;
+    private EditText final_result;
     private EditText mtrnr;
 
     //mtr ==01613210 %7=0
@@ -42,8 +43,21 @@ public class MainActivity extends AppCompatActivity {
                     prime=false;
                 }
             }
+
+
             if(prime){
-                System.out.println("Primes: "+number);
+                StringBuilder builder=new StringBuilder();
+                builder.append(number);
+                for(int k=0;k<builder.length();k++){
+                    System.out.println(builder.charAt(k)+" TEST");
+                    text=Integer.toString(builder.charAt(k));
+                    final_result = findViewById(R.id.number_mtr);
+                    mtrnr =findViewById(R.id.result);
+                    mtrnr.setText(text);
+                    final_result.setText(text);
+                }
+
+                
             }
         }
 
