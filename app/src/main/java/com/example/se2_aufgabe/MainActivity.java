@@ -21,12 +21,32 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private Button number;
     private TextView server;
-    private EditText final_mtrnr;
+    private EditText result;
     private EditText mtrnr;
 
     //mtr ==01613210 %7=0
     @SuppressLint("WrongViewCast")
     public void calculateNumber(View view){
+        number=findViewById(R.id.calculate);
+        editText=findViewById(R.id.mtrnr);
+        String text=editText.getText().toString();
+        for(int i=0;i<text.length();i++){
+            boolean prime=true;
+            int number=Integer.parseInt(String.valueOf(text.charAt(i)));
+            System.out.println(number);
+            if(number<=1){ // 0&1 no primes
+                prime=false;
+            }
+            for(int j=2;j<number;j++){
+                if(number%j==0){
+                    prime=false;
+                }
+            }
+            if(prime){
+                System.out.println("Primes: "+number);
+            }
+        }
+
 
 
 
@@ -54,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("info", String.valueOf(editText));
                     server = findViewById(R.id.server);
                     server.setText(net.getResult());
-
+                    calculateNumber(a);
 
                 }
 
