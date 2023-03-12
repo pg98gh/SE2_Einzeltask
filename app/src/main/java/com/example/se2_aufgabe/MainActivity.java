@@ -9,10 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.net.ServerSocket;
-import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private Button number;
     private TextView server;
-    private EditText final_result;
-    private EditText mtrnr;
+    private TextView final_result;
+
 
     //mtr ==01613210 %7=0
     @SuppressLint("WrongViewCast")
@@ -31,10 +27,11 @@ public class MainActivity extends AppCompatActivity {
         number=findViewById(R.id.calculate);
         editText=findViewById(R.id.mtrnr);
         String text=editText.getText().toString();
-        for(int i=0;i<text.length();i++){
+
+        for(int i=0;i<text.length()-1;i++){
             boolean prime=true;
             int number=Integer.parseInt(String.valueOf(text.charAt(i)));
-            System.out.println(number);
+            //System.out.println(number);
             if(number<=1){ // 0&1 no primes
                 prime=false;
             }
@@ -44,23 +41,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-
+            StringBuilder builder = new StringBuilder();
             if(prime){
-                StringBuilder builder=new StringBuilder();
-                builder.append(number);
-                for(int k=0;k<builder.length();k++){
-                    System.out.println(builder.charAt(k)+" TEST");
-                    text=Integer.toString(builder.charAt(k));
+
+                builder.append(number).append(" ");
+                final_result = findViewById(R.id.number_mtr);
+                final_result.append(builder.toString());
+                
+                /**
+                for(int k=0;k<builder.length()-1;k++){
+                    String info=String.valueOf(builder.charAt(k));
+                    System.out.println(info+" TEST");
+
                     final_result = findViewById(R.id.number_mtr);
                     mtrnr =findViewById(R.id.result);
-                    mtrnr.setText(text);
-                    final_result.setText(text);
-                }
+                    //mtrnr.setText(info);
+                    //final_result.setText(String.valueOf(builder.charAt(k)));
+                    builder.setLength(builder.length()-1);
+                    final_result.append(builder.toString());
+                }*/
 
-                
             }
         }
-
 
 
 
